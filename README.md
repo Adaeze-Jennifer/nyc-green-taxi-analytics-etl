@@ -56,5 +56,20 @@ RankedHours AS (
 )
 SELECT * FROM RankedHours WHERE Profit_Rank <= 3;
 ```
-**Insight:** **5:00 AM and 6:00 AM** consistently ranked as consistently ranked as the most profitable hours per trip across all four years, capturing high-fare long-distance airport runs and early worker commutes before morning gridlock sets in.
+| Data_Year | Profit_Rank | Pickup_Hour | Total_Trips | Avg_Total_Amount |
+|-----------|-------------|-------------|-------------|------------------|
+| 2017      | 1           | 5           | 111909      | 17.41            |
+| 2017      | 2           | 6           | 159484      | 16.94            |
+| 2017      | 3           | 4           | 165959      | 15.52            |
+| 2018      | 1           | 6           | 135943      | 21.06            |
+| 2018      | 2           | 5           | 80927       | 20.19            |
+| 2018      | 3           | 7           | 270726      | 18.37            |
+| 2019      | 1           | 6           | 84599       | 21.80            |
+| 2019      | 2           | 5           | 45210       | 20.33            |
+| 2019      | 3           | 7           | 173036      | 18.28            |
+| 2020      | 1           | 5           | 8786        | 21.17            |
+| 2020      | 2           | 6           | 19285       | 20.98            |
+| 2020      | 3           | 4           | 8968        | 17.06            |
+
+**Insight:** **5:00 AM and 6:00 AM** consistently ranked as the most profitable hours per trip across all four years, capturing high-fare long-distance airport runs and early worker commutes before morning gridlock sets in.
 
