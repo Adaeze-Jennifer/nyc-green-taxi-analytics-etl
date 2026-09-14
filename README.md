@@ -16,14 +16,14 @@ The project covers the full data lifecycle: beginning with a rigorous database s
 - **Analytical Frameworks:** Data Auditing, Fraud/Anomaly Detection, Dynamic Velocity Profiling, Geospatial Staging, Trend Tracking.
 
 ## 📂 Repository Structure
-'''text
+```text
 ├── DATA_DICTIONARY.md         # Detailed breakdown of business codes & metadata rules
 ├── SQL_Queries/
 │   ├── 01_Data_Audit.sql      # Diagnostic scripts for missing parameter tracking
 │   ├── 02_Table_Cleaning.sql  # SELECT INTO segregation and isolation pipeline scripts
 │   └── 03_Business_Logic.sql  # 10 advanced business questions solved with analytic SQL
 └── README.md                  # Comprehensive project portfolio documentation
-'''
+```
 
 ## Phase 1: Data Integrity Audit & Pipeline Engineering
 Before running business diagnostics, a structural data audit was conducted. A critical problem was identified in the 2019 and 2020 data streams: exactly 414,107 rows (2019) and 528,092 rows (2020) were missing values across core operational columns (VendorID, passenger_count, RatecodeID, payment_type).
