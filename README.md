@@ -30,4 +30,13 @@ Before running business diagnostics, a structural data audit was conducted. A cr
 
 ## Root Cause Analysis
 Research into NYC TLC regulatory updates revealed that around 2019, the city began integrating raw app-based rideshare data (High-Volume For-Hire Vehicles, like Uber/Lyft) into green taxi schemas. Because these platforms do not use traditional in-cab hardware, traditional telemetry data columns defaulted to NULL.
+
 -**The Analytics Strategy:** Attempting to fill these entries with default values (like assuming 1 passenger via ISNULL) would artificially inflate traditional taxi volume by nearly 1 million rides, ruining core metrics. Instead, a defensive isolation pipeline was engineered to purge these records and isolate traditional green taxi behaviors.
+
+```
+-- Pipeline Segregation: Isolating traditional taxi telemetry from rideshare data
+SELECT * 
+INTO dbo.2019_Taxi_Trips_Cleaned 
+FROM dbo.[2019_taxi_trips]
+WHERE VendorID IS NOT NULL; -- Excludes the 414,107 incomplete rideshare entries
+```
