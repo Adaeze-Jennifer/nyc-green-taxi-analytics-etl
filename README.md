@@ -52,11 +52,13 @@ WHERE VendorID IS NOT NULL; -- Excludes the 414,107 incomplete rideshare entries
 3.  **The Cash vs. Credit Card Premium:** What is the average total revenue difference between credit card payments and cash paymemts?
   
 **B. OPERATIONAL EFFICIENCY & DEMOGRAPHICS**
+
 4. **The "Ghost Trip" Anomaly:** How many trips recorded a passenger count of 0 but still generated a positive fare amount? What is the total revenue sitting in these anomalies?
 5. **Multi-Efficiency:** Do trips with higher passenger counts (e.g. 3+ people) result in longer distance and higher fares, or are they mostly short group trips?
 6.  **The Pandemic Volume Collapse:** What was the percentage drop in total trip volume and total revenue April 2019 and April 2020?
   
 **C. GEOSPATIAL AND ROUTING INSIGHTS**
+
 7. **High-Demand Hotspots:** What are the Top 5 busiest Pickup Locations (PULocationID) across the entire dataset and what is the average   distance travelled from them?
 8. **The Congestion Trap**  Which common pickup-to-drop-off routes have the lowest calculated speed (Distance/Duration), indicating heavy traffic congestion?
  
