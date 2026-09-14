@@ -2,6 +2,7 @@
 
 ## 📌 Project Overview
 This repository documents an end-to-end data analytics and engineering project executed on the New York City Taxi and Limousine Commission (TLC) Green Taxi dataset spanning four consecutive fiscal years (2017–2020).
+
 The project covers the full data lifecycle: beginning with a rigorous database schema audit, moving to structural ETL data pipeline engineering to isolate platform anomalies, and culminating in advanced business logic queries to extract high-value insights on fleet operations, pricing strategies, consumer behaviors, and market contractions.
 
 ## 💼 Key Business Impact Delivered:
@@ -42,6 +43,25 @@ WHERE VendorID IS NOT NULL; -- Excludes the 414,107 incomplete rideshare entries
 ```
 
 ## 📈 Phase 2: Core Analytical Solutions & Insights
+*Note: To maintain readability, the top executive highlights are detailed below. The complete, production-ready source code solving all 10 business analytical inquires can be reviewed directly in the [SQL_Queries/03_business_logic.sql](SQL_Queries/03_business_logic.sql) file.*
+
+### The 10 Core Analytical Inquiries Solved:
+* -- **A. PRICING AND REVENUE ANALYTICS**
+* -- **1. The High-value Time Window** Which hour of the day across all four years, yields the highest average total fare per trip?
+* -- **2. The Tip-to-Fare Ratio:** Do Passengers tip a higher percentage of the fare on short trips versus long trips?
+* -- **3. The Cash vs. Credit Card Premium:** What is the average total revenue difference between credit card payments and cash paymemts
+* -- **B. OPERATIONAL EFFICIENCY & DEMOGRAPHICS**
+* -- **4. The "Ghost Trip" Anomaly:** How many trips recorded a passenger count of 0 but still generated a positive fare amount? What is the total revenue sitting in these anomalies?
+* -- **5. Multi-Efficiency:** Do trips with higher passenger counts (e.g. 3+ people) result in longer distance and higher fares, or are they mostly short group trips?
+* -- **6. The Pandemic Volume Collapse:** What was the percentage drop in total trip volume and total revenue April 2019 and April 2020?
+* -- **C. GEOSPATIAL AND ROUTING INSIGHTS**
+* -- **7. High-Demand Hotspots:** What are the Top 5 busiest Pickup Locations (PULocationID) across the entire dataset and what is the average   distance travelled from them?
+* -- **8. The Congestion Trap**  Which common pickup-to-drop-off routes have the lowest calculated speed (Distance/Duration), indicating heavy traffic congestion?
+* -- **D. MACRO TRENDS (MULTI-YEAR UNION ANALYTICS)**
+* -- **9. Yearly Market Share Shift:** How did the total market share of traditional green taxi trips change year-over-year from 2017 to 2020 after we filtered out of the app-based missing data?
+*-- **10. The Long-Distance Dropoff Rejection** Are long distance drop-off trips (defined as the top 10% of distances) more likely to be charged standard rates or negotiated flat rates (RatecodeID)
+---
+### Key Analytical Findings & Executive Highlights
 ### 1. The High-Value Shift Window (Question 1)
 **Objective:** Find the top 3 most profitable hours of the day per year based on average ticket size.
 
