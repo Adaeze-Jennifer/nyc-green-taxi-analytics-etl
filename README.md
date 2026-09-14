@@ -44,6 +44,7 @@ WHERE VendorID IS NOT NULL; -- Excludes the 414,107 incomplete rideshare entries
 ## 📈 Phase 2: Core Analytical Solutions & Insights
 ### 1. The High-Value Shift Window (Question 1)
 **Objective:** Find the top 3 most profitable hours of the day per year based on average ticket size.
+
 **Technical Approach:** Extracted timestamps using DATEPART, computed averages across years using a nested UNION ALL structure, and ranked output via DENSE_RANK() OVER (PARTITION BY...).
 
 ```
