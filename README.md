@@ -139,8 +139,11 @@ CAST(AVG((trip_distance * 3600.0) / NULLIF(DATEDIFF(second, lpep_pickup_datetime
 
 ## 📈 Strategic Recommendations Developed
 **1. Target High-Yield Hubs:** Fleet distribution should be stationed near regional strongholds like East Harlem North (Zone 74), which logged 1.88M+ rides, focusing on high-frequency neighborhood trips.
+
 **2. Early Mobility Incentives:**  Fleet managers should encourage drivers to start shifts early to catch the high-yield 5:00 AM – 6:00 AM window, maximizing morning revenue per hour before traffic peaks.
+
 **3. Dynamic Congestion Routing:** Incorporate velocity maps into fleet tracking software to route drivers around known bottlenecks like the Downtown Brooklyn corridor during rush hours.
+
 **4. Business Diversification:** With traditional street hails down nearly 90%, traditional fleet survival requires a shift toward B2B corporate courier contracts, medical transport logistics, or direct e-hail app integrations.
 
 ### 👤 Contact & Connections
