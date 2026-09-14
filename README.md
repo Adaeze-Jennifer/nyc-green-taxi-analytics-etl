@@ -28,15 +28,32 @@ The project covers the full data lifecycle: beginning with a rigorous database s
 ## Phase 1: Data Integrity Audit & Pipeline Engineering
 Before running business diagnostics, a structural data audit was conducted. A critical problem was identified in the 2019 and 2020 data streams: exactly 414,107 rows (2019) and 528,092 rows (2020) were missing values across core operational columns (VendorID, passenger_count, RatecodeID, payment_type).
 
-## Root Cause Analysis
+### Root Cause Analysis
 Research into NYC TLC regulatory updates revealed that around 2019, the city began integrating raw app-based rideshare data (High-Volume For-Hire Vehicles, like Uber/Lyft) into green taxi schemas. Because these platforms do not use traditional in-cab hardware, traditional telemetry data columns defaulted to NULL.
 
--**The Analytics Strategy:** Attempting to fill these entries with default values (like assuming 1 passenger via ISNULL) would artificially inflate traditional taxi volume by nearly 1 million rides, ruining core metrics. Instead, a defensive isolation pipeline was engineered to purge these records and isolate traditional green taxi behaviors.
+**The Analytics Strategy:** Attempting to fill these entries with default values (like assuming 1 passenger via ISNULL) would artificially inflate traditional taxi volume by nearly 1 million rides, ruining core metrics. Instead, a defensive isolation pipeline was engineered to purge these records and isolate traditional green taxi behaviors.
 
 ```
--- Pipeline Segregation: Isolating traditional taxi telemetry from rideshare data
+--Pipeline Segregation: Isolating traditional taxi telemetry from rideshare data
 SELECT * 
 INTO dbo.2019_Taxi_Trips_Cleaned 
 FROM dbo.[2019_taxi_trips]
 WHERE VendorID IS NOT NULL; -- Excludes the 414,107 incomplete rideshare entries
 ```
+
+## 📈 Phase 2: Core Analytical Solutions & Insights
+### 1. The High-Value Shift Window (Question 1)
+**Objective:** Find the top 3 most profitable hours of the day per year based on average ticket size.
+**Technical Approach:** Extracted timestamps using DATEPART, computed averages across years using a nested UNION ALL structure, and ranked output via DENSE_RANK() OVER (PARTITION BY...).
+
+```
+-- Sliced snippet of the ranking layer
+RankedHours AS (
+    SELECT Data_Year, Pickup_Hour, Total_Trips, Avg_Total_Amount,
+           DENSE_RANK() OVER (PARTITION BY Data_Year ORDER BY Avg_Total_Amount DESC) AS Profit_Rank
+    FROM HourlyMetrics
+)
+SELECT * FROM RankedHours WHERE Profit_Rank <= 3;
+```
+**Insight:** **5:00 AM and 6:00 AM** consistently ranked as consistently ranked as the most profitable hours per trip across all four years, capturing high-fare long-distance airport runs and early worker commutes before morning gridlock sets in.
+
