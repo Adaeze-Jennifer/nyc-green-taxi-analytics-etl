@@ -65,7 +65,7 @@ WHERE VendorID IS NOT NULL; -- Excludes the 414,107 incomplete rideshare entries
 **D. MACRO TRENDS (MULTI-YEAR UNION ANALYTICS)**
 
 9. **Yearly Market Share Shift:** How did the total market share of traditional green taxi trips change year-over-year from 2017 to 2020 after we filtered out of the app-based missing data?
-10. **The Long-Distance Dropoff Rejection** Are long distance drop-off trips (defined as the top 10% of distances) more likely to be charged standard rates or negotiated flat rates (RatecodeID)
+10. **The Long-Distance Dropoff Rejection** Are long distance drop-off trips (defined as the top 10% of distances) more likely to be charged standard rates or negotiated flat rates (RatecodeID)?
 ---
 ### Key Analytical Findings & Executive Highlights
 ### 1. The High-Value Shift Window (Question 1)
