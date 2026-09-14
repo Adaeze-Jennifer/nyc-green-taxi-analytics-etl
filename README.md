@@ -144,7 +144,7 @@ CAST(AVG((trip_distance * 3600.0) / NULLIF(DATEDIFF(second, lpep_pickup_datetime
 **4. Business Diversification:** With traditional street hails down nearly 90%, traditional fleet survival requires a shift toward B2B corporate courier contracts, medical transport logistics, or direct e-hail app integrations.
 
 ### 👤 Contact & Connections
-Name: Adaeze Jennifer Onuigbo
-Role: Data Analyst / Business Intelligence Analyst
-LinkedIn: (Link)[_https:www.linkedin.com/in/adaezeonuigbo_]
-Portfolio / Website: [ Portfolio Link]
+- _**Name:**_ Adaeze Jennifer Onuigbo
+- _**Role:**_ Data Analyst / Business Intelligence Analyst
+- _**LinkedIn:**_ [Link](_https://www.linkedin.com/in/adaezeonuigbo_)
+- _**Portfolio / Website:**_ [ Portfolio Link]
