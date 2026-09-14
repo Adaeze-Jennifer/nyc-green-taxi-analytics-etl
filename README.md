@@ -73,3 +73,78 @@ SELECT * FROM RankedHours WHERE Profit_Rank <= 3;
 
 **Insight:** **5:00 AM and 6:00 AM** consistently ranked as the most profitable hours per trip across all four years, capturing high-fare long-distance airport runs and early worker commutes before morning gridlock sets in.
 
+## 2. The Cash vs. Credit Card Premium (Question 3)
+**Objective:** Profile total revenue generation across distinct consumer payment categories.
+
+| Data_Year | Payment_Method | Total_Trips | Avg_Fare | Avg_Tip | Avg_Total_Revenue |
+|-----------|----------------|-------------|----------|---------|-------------------|
+| 2017      | Cash           | 253696      | 11.78    | 1.20    | 14.33             |
+| 2017      | Credit Card    | 348539      | 11.48    | 1.18    | 14.01             |
+| 2018      | Cash           | 137632      | 11.92    | 1.14    | 14.42             |
+| 2018      | Credit Card    | 192200      | 11.54    | 1.11    | 14.01             |
+| 2019      | Cash           | 72347       | 12.16    | 1.20    | 15.01             |
+| 2019      | Credit Card    | 104978      | 11.71    | 1.16    | 14.51             |
+| 2020      | Cash           | 12183       | 12.69    | 1.18    | 15.57             |
+| 2020      | Credit Card    | 18143       | 11.98    | 1.16    | 14.82             |
+
+**Insight:** Contrary to industry assumptions, **Cash transactions consistently generated a higher average total amount than Credit Cards** across all periods (e.g., 2017: **$14.33** cash average vs. **$14.01** credit card average). This indicates a strong consumer preference for cash on longer, high-value routes.
+
+## 3. "Ghost Trip" Anomaly Detection (Question 4)
+Objective: Audit and catch system hardware faults (trips with 0 passengers that billed a positive fare).
+
+| Data_Year | Ghost_Trip_Count | Total_Ghost_Base_Fare | Total_Ghost_Revenue_Collected |
+|-----------|------------------|-----------------------|-------------------------------|
+| 2017      | 1754             | 33164.33              | 35529.09                      |
+| 2018      | 12278            | 159740.74             | 189969.83                     |
+| 2019      | 11627            | 148705.80             | 177698.56                     |
+| 2020      | 3166             | 37694.58              | 44052.83                      |
+
+**Insight:** Uncovered a massive system hardware or logging software bug in 2018, where zero-passenger trips exploded from **1,754** (2017) to **12,278** (2018), capturing **$189,969.83** in unverified revenue.
+
+## 4. Congestion Trap & Velocity Profiling (Question 8)
+**Objective:** Profile trip durations and trip distances to map heavy traffic bottlenecks.
+
+**Technical Solution:** Managed SQL Server integer division limitations by using a * 1.0 decimal multiplier, and isolated true gridlock using a HAVING clause filter for realistic trip durations.
+
+```
+-- Network velocity computation equation snippet
+CAST(AVG((trip_distance * 3600.0) / NULLIF(DATEDIFF(second, lpep_pickup_datetime, lpep_dropoff_datetime), 0)) AS DECIMAL(10, 2)) AS Avg_Speed_MPH
+```
+| PULocationID | DOLocationID | Total_Trips | Avg_Distance | Avg_Speed_MPH |
+|--------------|--------------|-------------|--------------|---------------|
+| 52           | 65           | 6630        | 1.05         | 7.17          |
+| 25           | 65           | 12691       | 0.97         | 7.51          |
+| 123          | 149          | 957         | 1.53         | 7.51          |
+| 178          | 165          | 639         | 1.29         | 7.52          |
+| 227          | 26           | 910         | 1.56         | 7.57          |
+| 65           | 33           | 19662       | 1.05         | 7.64          |
+| 165          | 178          | 568         | 1.54         | 7.64          |
+| 26           | 165          | 1544        | 2.83         | 7.64          |
+| 97           | 25           | 31483       | 1.01         | 7.67          |
+| 33           | 65           | 17268       | 0.99         | 7.80          |
+
+**Insight:** Isolated the worst transit corridor in Brooklyn: **Zone 52 to Zone 65** (Red Hook to Downtown Brooklyn), charting a crawling speed of **7.17 MPH** across **6,630 trips.**
+
+## 5. Macro Industry Contraction (Question 9)
+**Objective:** Measure the multi-year macro trend of traditional green taxi volume over time.
+
+| Data_Year | Total_Annual_Trips |
+|-----------|--------------------|
+| 2017      | 11740640           |
+| 2018      | 8807240            |
+| 2019      | 5629584            |
+| 2020      | 1205954            |
+
+**Insight:** Charted a catastrophic **89.7%** drop in volume over 36 months, plunging from **11.74 Million trips** (2017) down to **1.21 Million trips** (2020). This highlights the combined structural pressure of rideshare expansion and pandemic shutdowns (with April 2020 experiencing a sharp 95.2% volume collapse).
+
+## 📈 Strategic Recommendations Developed
+**1. Target High-Yield Hubs:** Fleet distribution should be stationed near regional strongholds like East Harlem North (Zone 74), which logged 1.88M+ rides, focusing on high-frequency neighborhood trips.
+**2. Early Mobility Incentives:**  Fleet managers should encourage drivers to start shifts early to catch the high-yield 5:00 AM – 6:00 AM window, maximizing morning revenue per hour before traffic peaks.
+**3. Dynamic Congestion Routing:** Incorporate velocity maps into fleet tracking software to route drivers around known bottlenecks like the Downtown Brooklyn corridor during rush hours.
+**4. Business Diversification:** With traditional street hails down nearly 90%, traditional fleet survival requires a shift toward B2B corporate courier contracts, medical transport logistics, or direct e-hail app integrations.
+
+### 👤 Contact & Connections
+Name: Adaeze Jennifer Onuigbo
+Role: Data Analyst / Business Intelligence Analyst
+LinkedIn: (Link)[_https:www.linkedin.com/in/adaezeonuigbo_]
+Portfolio / Website: [ Portfolio Link]
