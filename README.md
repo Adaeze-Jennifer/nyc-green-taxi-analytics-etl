@@ -146,5 +146,5 @@ CAST(AVG((trip_distance * 3600.0) / NULLIF(DATEDIFF(second, lpep_pickup_datetime
 ### 👤 Contact & Connections
 - _**Name:**_ Adaeze Jennifer Onuigbo
 - _**Role:**_ Data Analyst / Business Intelligence Analyst
-- _**LinkedIn:**_ [Link](_https://www.linkedin.com/in/adaezeonuigbo_)
+- _**LinkedIn:**_ [Link](https://www.linkedin.com/in/adaezeonuigbo)
 - _**Portfolio / Website:**_ [ Portfolio Link]
