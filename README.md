@@ -67,7 +67,7 @@ WHERE VendorID IS NOT NULL; -- Excludes the 414,107 incomplete rideshare entries
 9. **Yearly Market Share Shift:** How did the total market share of traditional green taxi trips change year-over-year from 2017 to 2020 after we filtered out of the app-based missing data?
 10. **The Long-Distance Dropoff Rejection** Are long distance drop-off trips (defined as the top 10% of distances) more likely to be charged standard rates or negotiated flat rates (RatecodeID)?
 ---
-### Key Analytical Findings & Executive Highlights
+## Key Analytical Findings & Executive Highlights
 ### 1. The High-Value Shift Window (Question 1)
 **Objective:** Find the top 3 most profitable hours of the day per year based on average ticket size.
 
@@ -98,7 +98,7 @@ SELECT * FROM RankedHours WHERE Profit_Rank <= 3;
 
 **Insight:** **5:00 AM and 6:00 AM** consistently ranked as the most profitable hours per trip across all four years, capturing high-fare long-distance airport runs and early worker commutes before morning gridlock sets in.
 
-## 2. The Cash vs. Credit Card Premium (Question 3)
+### 2. The Cash vs. Credit Card Premium (Question 3)
 **Objective:** Profile total revenue generation across distinct consumer payment categories.
 
 | Data_Year | Payment_Method | Total_Trips | Avg_Fare | Avg_Tip | Avg_Total_Revenue |
@@ -114,7 +114,7 @@ SELECT * FROM RankedHours WHERE Profit_Rank <= 3;
 
 **Insight:** Contrary to industry assumptions, **Cash transactions consistently generated a higher average total amount than Credit Cards** across all periods (e.g., 2017: **$14.33** cash average vs. **$14.01** credit card average). This indicates a strong consumer preference for cash on longer, high-value routes.
 
-## 3. "Ghost Trip" Anomaly Detection (Question 4)
+### 3. "Ghost Trip" Anomaly Detection (Question 4)
 Objective: Audit and catch system hardware faults (trips with 0 passengers that billed a positive fare).
 
 | Data_Year | Ghost_Trip_Count | Total_Ghost_Base_Fare | Total_Ghost_Revenue_Collected |
@@ -126,7 +126,7 @@ Objective: Audit and catch system hardware faults (trips with 0 passengers that 
 
 **Insight:** Uncovered a massive system hardware or logging software bug in 2018, where zero-passenger trips exploded from **1,754** (2017) to **12,278** (2018), capturing **$189,969.83** in unverified revenue.
 
-## 4. Congestion Trap & Velocity Profiling (Question 8)
+### 4. Congestion Trap & Velocity Profiling (Question 8)
 **Objective:** Profile trip durations and trip distances to map heavy traffic bottlenecks.
 
 **Technical Solution:** Managed SQL Server integer division limitations by using a * 1.0 decimal multiplier, and isolated true gridlock using a HAVING clause filter for realistic trip durations.
@@ -150,7 +150,7 @@ CAST(AVG((trip_distance * 3600.0) / NULLIF(DATEDIFF(second, lpep_pickup_datetime
 
 **Insight:** Isolated the worst transit corridor in Brooklyn: **Zone 52 to Zone 65** (Red Hook to Downtown Brooklyn), charting a crawling speed of **7.17 MPH** across **6,630 trips.**
 
-## 5. Macro Industry Contraction (Question 9)
+### 5. Macro Industry Contraction (Question 9)
 **Objective:** Measure the multi-year macro trend of traditional green taxi volume over time.
 
 | Data_Year | Total_Annual_Trips |
